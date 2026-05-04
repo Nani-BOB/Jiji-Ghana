@@ -38,7 +38,7 @@ if response.ok:
             else:
                 
                 human_name_data = name_data.text.strip()
-            
+                
                 #name_list.append(human_name_data)
             
                 price_data = mobile_phone.find("div",{"class":"qa-advert-price"})
@@ -73,7 +73,7 @@ if response.ok:
                         
                 else:
                     
-                    link = url_listing_data.get("href", None)
+                    link = f"https://jiji.com.gh{url_listing_data.get("href", None)}"
                     
                     if link is None:
                         link = "N/A"
@@ -91,12 +91,11 @@ if response.ok:
 else:
     print(f'An error occured and a {response.status_code} was received')
 
-'''record.append({
-    "Phone Name":name_list,
-    "Phone Price":price_list,
-    "Address":address_list,
-    "Listing URL":url_list,
-    })'''
+    record.append({ "Phone Name":human_name_data,
+                    "Phone Price":human_price_data,
+                    "Address":human_address_data,
+                    "Listing URL":link,
+                                        })
 
 df = pd.DataFrame(record)
 
